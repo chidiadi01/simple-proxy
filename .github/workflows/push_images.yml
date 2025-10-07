@@ -26,10 +26,7 @@ jobs:
       - name: Show extracted tag
         run: echo "Building release tag $TAG"
 
-      - name: Build and Push all images
-        uses: docker/compose-action@v3
-        with:
-          compose-file: docker-compose-build.yml
-          push: true
-        env:
-          TAG: ${{ env.TAG }}
+      - name: Build and Push images
+        run: |
+          docker compose -f docker-compose.yml build
+          docker compose -f docker-compose.yml push
