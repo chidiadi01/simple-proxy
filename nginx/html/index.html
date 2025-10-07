@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="font-family: sans-serif; margin: 0px; padding-bottom: 10em;">
+    <div style="display: flex; flex-direction: column; gap: 2em; align-items: center;justify-items: center; height: 100vh; background-color: gainsboro; padding: 2em;">
+        <h2 style="font-size: 4em; text-align: center; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Hello, I am Chidiadi, and this is my demo.</h2>
+        <p>This is a simple proxy setup using Docker and NGINX.</p>
+        <div style="display: flex; gap: 10px;">
+            <a href="/auth" style="text-decoration: none;"><button style="width: 100%; height: 3em; color: white; background-color: black; border-radius: 3em;">Access the auth service</button></a>
+            <a href="/chat" style="text-decoration: none;"><button style="width: 100%; height: 3em; color: white; background-color: black; border-radius: 3em;">Access the chat service</button></a>
+        </div>
+        <div style="display: flex; gap: 10px;">
+            <button onclick="getAuth()" style="width: 15em; height: 3em; color: white; background-color: black; border-radius: 3em;">Query auth service</button>
+            <button onclick="getChat()" style="width: 15em; height: 3em; color: white; background-color: black; border-radius: 3em;">Query the chat service</button>
+        </div>
+        <div id="chat-div" style="display: none; width: auto; background-color:#f1f1f1; border: #808080 solid 5px; padding: 1em; border-radius: 1em; margin-bottom: 5em;"></div>
+        <div id="auth-div" style="display: none; width: auto; background-color:#f1f1f1; border: #808080 solid 5px; padding: 1em; border-radius: 1em; margin-bottom: 5em;"></div>
+    </div>
+
+
+    <script>
+        async function getAuth(){
+            const res = await fetch('/auth');
+            const html = await res.text();
+            document.getElementById('auth-div').innerHTML = html;
+             document.getElementById('auth-div').style.display = 'block';
+        }
+
+        async function getChat(){
+            const res = await fetch('/chat');
+            const html = await res.text();
+            document.getElementById('chat-div').innerHTML = html;
+            document.getElementById('chat-div').style.display = 'block';
+            console.log(html);
+        }
+    </script>
+</body>
+</html>
