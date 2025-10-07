@@ -1,0 +1,35 @@
+name: Build and Push on Release
+
+on:
+  release:
+    types: [published]   # Trigger when a new release is created (e.g., v1.0.0)
+  workflow_dispatch:      # Allow manual runs too
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Extract release tag
+        id: vars
+        run: echo "TAG=${GITHUB_REF##*/}" >> $GITHUB_ENV
+
+      - name: Show extracted tag
+        run: echo "Building release tag $TAG"
+
+      - name: Build and Push all images
+        uses: docker/compose-action@v3
+        with:
+          compose-file: docker-compose-build.yml
+          push: true
+        env:
+          TAG: ${{ env.TAG }}

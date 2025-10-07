@@ -1,0 +1,14 @@
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    image: chidiadi001/simple-proxy-nginx:${TAG}
+
+  auth:
+    build: ./auth
+    image: chidiadi001/simple-proxy-auth:${TAG}
+
+  chat:
+    build: ./chat
+    image: chidiadi001/simple-proxy-chat:${TAG}

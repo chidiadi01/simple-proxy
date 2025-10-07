@@ -1,0 +1,27 @@
+services:
+  nginx:
+    image: chidiadi001/simple-proxy-nginx:${TAG}
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    networks:
+      - internalnetwork
+    depends_on:
+      - auth
+      - chat
+
+  auth:
+    image: chidiadi001/simple-proxy-auth:${TAG}
+    restart: unless-stopped
+    networks:
+      - internalnetwork
+
+  chat:
+    image: chidiadi001/simple-proxy-chat:${TAG}
+    restart: unless-stopped
+    networks:
+      - internalnetwork
+
+networks:
+  internalnetwork:
+    driver: bridge
