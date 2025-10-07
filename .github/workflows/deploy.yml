@@ -20,8 +20,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd ${{ env.DEPLOY_PATH }}
-            docker compose --env-file .env -f docker-compose.deploy.yml pull
-            docker compose --env-file .env -f docker-compose.deploy.yml up -d --remove-orphans
+            docker compose --env-file .env -f docker-compose-deploy.yml pull
+            docker compose --env-file .env -f docker-compose-deploy.yml up -d --remove-orphans
 
 
 # This is for use when you want to deploy to a server from GitHub Actions. Refer to readme to use 
