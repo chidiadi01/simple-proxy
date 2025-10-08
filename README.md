@@ -21,10 +21,10 @@ For the deployment, the .env file on the computer or server is used to determine
 
 The deployment workflow here has `${TAG}` that has to be passed in. So, your .env file should have
 
-```
+```env 
 TAG=v1.0.0
 
-#OR
+# OR
 
 TAG=v2.0.0
 
