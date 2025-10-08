@@ -14,3 +14,20 @@ It's then supposed to take the tag of the release and use it for the tag of the 
 To deploy, run `docker compose up -f docker-compose-deploy.yml && docker compose -f docker-compose-deploy.yml up`. This will pull the images and deploy them on your computer.
 
 To deploy on a VM like AWS EC2 or Digital Ocean Droplet, add the following secrets to GitHub,SERVER_USER, SERVER_HOST, and SSH_PRIVATE_KEY.And then run the deployment workflow `deploy.yml` from the GitHub UI.
+
+### Selecting versions to deploy
+
+For the deployment, the .env file on the computer or server is used to determine the version to deploy.
+
+The deployment workflow here has `${TAG}` that has to be passed in. So, your .env file should have
+
+```
+TAG=v1.0.0
+
+#OR
+
+TAG=v2.0.0
+
+```
+
+Something like that. The tag tells Docker Compose which versions to pull and run.
