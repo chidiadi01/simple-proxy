@@ -28,6 +28,10 @@ TAG=v1.0.0
 
 TAG=v2.0.0
 
+# OR
+
+TAG=latest
+
 ```
 
 Something like that. The tag tells Docker Compose which versions to pull and run.
