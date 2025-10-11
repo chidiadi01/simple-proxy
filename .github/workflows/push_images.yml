@@ -30,3 +30,14 @@ jobs:
         run: |
           docker compose -f docker-compose-build.yml build
           docker compose -f docker-compose-build.yml push
+
+      - name: Now, use the 'latest' tag
+        run: echo "TAG=latest" >> $GITHUB_ENV
+
+      - name: Show extracted tag
+        run: echo "Building release tag $TAG"
+
+      - name: Build and Push images
+        run: |
+          docker compose -f docker-compose-build.yml build
+          docker compose -f docker-compose-build.yml push
