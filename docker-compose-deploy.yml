@@ -1,6 +1,6 @@
 services:
   nginx:
-    image: chidiadi001/simple-proxy-nginx:${TAG=latest}
+    image: chidiadi001/simple-proxy-nginx:${TAG:-latest}
     ports:
       - "80:80"
     restart: unless-stopped
@@ -11,13 +11,13 @@ services:
       - chat
 
   auth:
-    image: chidiadi001/simple-proxy-auth:${TAG=latest}
+    image: chidiadi001/simple-proxy-auth:${TAG:-latest}
     restart: unless-stopped
     networks:
       - internalnetwork
 
   chat:
-    image: chidiadi001/simple-proxy-chat:${TAG=latest}
+    image: chidiadi001/simple-proxy-chat:${TAG:-latest}
     restart: unless-stopped
     networks:
       - internalnetwork
